@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { PiggyBank, TrendingUp, Info, Scale, Clock, Car, ShieldAlert, Heart } from 'lucide-react';
 
 // Birth/Delivery Options in Guatemala
 const BIRTH_OPTIONS = [
@@ -132,16 +131,16 @@ export const Calculator: React.FC = () => {
 
     if (netIncome < 3000) {
       riskLevel = 'Alto';
-      diagnosticMsg = '⚠️ Riesgo Financiero Alto: Tras restar los gastos del niño, te quedan menos de Q3,000 libres al mes. Ante un imprevisto de salud o accidente de Q50k+, te verás obligado a recurrir a préstamos bancarios de consumo o tarjetas de crédito con tasas de interés usureras (18% al 32% anual en Guatemala).';
-      diagnosticColor = 'border-red-500/30 bg-red-500/5 text-red-400';
+      diagnosticMsg = 'Riesgo Financiero Alto: Tras restar los gastos de crianza calculados, tu remanente libre es menor a Q3,000 mensuales. Ante una hospitalización o accidente repentino de Q50,000+, te verás forzado a recurrir a financiamientos bancarios de consumo o tarjetas de crédito con tasas elevadas (del 18% al 32% anual en el mercado guatemalteco).';
+      diagnosticColor = 'border-l-2 border-red-500 bg-[var(--bg-tertiary)]';
     } else if (netIncome < 8000) {
       riskLevel = 'Medio';
-      diagnosticMsg = '⚡ Riesgo Financiero Moderado: Tu presupuesto es funcional para el día a día, pero tu capacidad de construir un fondo de emergencia sólido es lenta. Se recomienda contratar un seguro médico privado robusto de inmediato para no descapitalizarte ante accidentes.';
-      diagnosticColor = 'border-amber-500/30 bg-amber-500/5 text-amber-400';
+      diagnosticMsg = 'Riesgo Financiero Moderado: Tu presupuesto cubre el día a día, pero tu velocidad para constituir fondos de emergencia es reducida. Es prioritario que contrates una cobertura de gastos médicos privados robusta para no descapitalizarte ante accidentes.';
+      diagnosticColor = 'border-l-2 border-amber-500 bg-[var(--bg-tertiary)]';
     } else {
       riskLevel = 'Bajo';
-      diagnosticMsg = '✅ Finanzas Resilientes: Tus ingresos netos mensuales te permiten cubrir los gastos de crianza y mantener un ahorro mensual holgado para imprevistos, reduciendo la probabilidad de endeudamiento a cero.';
-      diagnosticColor = 'border-emerald-500/30 bg-emerald-500/5 text-emerald-400';
+      diagnosticMsg = 'Finanzas Resilientes: Tus ingresos netos tras gastos de crianza son sólidos. Tienes margen suficiente para estructurar fondos de emergencias propios y ahorrar mensualmente sin recurrir a financiamiento externo.';
+      diagnosticColor = 'border-l-2 border-emerald-500 bg-[var(--bg-tertiary)]';
     }
 
     return {
@@ -186,11 +185,11 @@ export const Calculator: React.FC = () => {
     <div className="animate-fade-in py-8 px-4 max-w-6xl mx-auto">
       {/* Title */}
       <div className="text-center mb-10">
-        <span className="px-4 py-1.5 rounded-full bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.2)] text-[var(--accent-violet)] text-xs font-semibold inline-block mb-3 uppercase tracking-wider">
+        <span className="px-4 py-1.5 bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--accent-gold)] text-xs font-semibold inline-block mb-3 uppercase tracking-widest">
           Enfoque Local: Guatemala
         </span>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Calculadora de Crianza y Oportunidad Financiera</h2>
-        <p className="text-[var(--text-secondary)] max-w-2xl mx-auto text-sm leading-relaxed">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 font-serif uppercase tracking-wider">Calculadora de Crianza y Oportunidad Financiera</h2>
+        <p className="text-[var(--text-secondary)] max-w-2xl mx-auto text-sm leading-relaxed font-light">
           Simulación detallada de gastos en el contexto guatemalteco. Analiza cómo inciden la educación privada, los partos, el tráfico vehicular metropolitano y la carga médica en tu presupuesto familiar.
         </p>
       </div>
@@ -202,16 +201,15 @@ export const Calculator: React.FC = () => {
           
           {/* Section: Income & Basic Sliders */}
           <div className="glass-card p-6 flex flex-col gap-5">
-            <h3 className="text-lg font-bold border-b border-white/5 pb-2.5 text-white flex items-center gap-2">
-              <Scale size={18} className="text-[var(--accent-violet)]" />
+            <h3 className="text-lg font-bold border-b border-[var(--border-color)] pb-2.5 text-white font-serif uppercase tracking-wider">
               1. Ingresos y Gastos Básicos
             </h3>
 
             {/* Income Slider */}
             <div>
-              <div className="flex justify-between items-center text-sm">
+              <div className="flex justify-between items-center text-xs mb-1">
                 <span className="font-semibold text-[var(--text-primary)]">Ingreso Mensual Familiar Combinado</span>
-                <span className="text-[var(--accent-violet)] font-bold font-display">Q{familyIncome.toLocaleString()} / mes</span>
+                <span className="text-[var(--accent-gold)] font-bold font-mono">Q{familyIncome.toLocaleString()} / mes</span>
               </div>
               <input 
                 type="range"
@@ -221,14 +219,14 @@ export const Calculator: React.FC = () => {
                 value={familyIncome}
                 onChange={(e) => setFamilyIncome(Number(e.target.value))}
               />
-              <p className="text-[10px] text-[var(--text-muted)]">Sueldo neto mensual sumado de ambos padres trabajando.</p>
+              <p className="text-[10px] text-[var(--text-muted)] font-light">Sueldo neto mensual sumado de ambos padres trabajando.</p>
             </div>
 
             {/* Food Cost */}
             <div>
-              <div className="flex justify-between items-center text-sm">
+              <div className="flex justify-between items-center text-xs mb-1">
                 <span className="font-semibold text-[var(--text-primary)]">Alimentación, Fórmulas y Pañales</span>
-                <span className="text-[var(--accent-pink)] font-bold font-display">Q{foodCost.toLocaleString()} / mes</span>
+                <span className="text-[var(--accent-rust)] font-bold font-mono">Q{foodCost.toLocaleString()} / mes</span>
               </div>
               <input 
                 type="range"
@@ -238,14 +236,14 @@ export const Calculator: React.FC = () => {
                 value={foodCost}
                 onChange={(e) => setFoodCost(Number(e.target.value))}
               />
-              <p className="text-[10px] text-[var(--text-muted)]">Súper, mercados locales, leches de fórmula y pañales.</p>
+              <p className="text-[10px] text-[var(--text-muted)] font-light">Súper, mercados locales, leches de fórmula y pañales.</p>
             </div>
 
             {/* Leisure & Clothes */}
             <div>
-              <div className="flex justify-between items-center text-sm">
+              <div className="flex justify-between items-center text-xs mb-1">
                 <span className="font-semibold text-[var(--text-primary)]">Ropa, Ocio y Fiestas infantiles</span>
-                <span className="text-[var(--accent-emerald)] font-bold font-display">Q{leisureCost.toLocaleString()} / mes</span>
+                <span className="text-[var(--accent-gold)] font-bold font-mono">Q{leisureCost.toLocaleString()} / mes</span>
               </div>
               <input 
                 type="range"
@@ -255,104 +253,102 @@ export const Calculator: React.FC = () => {
                 value={leisureCost}
                 onChange={(e) => setLeisureCost(Number(e.target.value))}
               />
-              <p className="text-[10px] text-[var(--text-muted)]">Zapatos, juguetes, salidas, regalos y la obligatoria piñata de cumpleaños.</p>
+              <p className="text-[10px] text-[var(--text-muted)] font-light">Zapatos, juguetes, salidas, regalos y la obligatoria piñata de cumpleaños.</p>
             </div>
           </div>
 
           {/* Section: Selectors for birth, education, housing, nanny, health */}
           <div className="glass-card p-6 flex flex-col gap-5">
-            <h3 className="text-lg font-bold border-b border-white/5 pb-2.5 text-white flex items-center gap-2">
-              <Heart size={18} className="text-[var(--accent-pink)]" />
+            <h3 className="text-lg font-bold border-b border-[var(--border-color)] pb-2.5 text-white font-serif uppercase tracking-wider">
               2. Servicios, Cuidado y Educación
             </h3>
 
             {/* Birth Select */}
             <div>
-              <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2">Gasto de Parto y Nacimiento</label>
+              <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2 font-serif">Gasto de Parto y Nacimiento</label>
               <select 
                 value={birthOption}
                 onChange={(e) => setBirthOption(e.target.value)}
-                className="w-full bg-[var(--bg-secondary)] text-white border border-white/5 rounded-xl p-3 text-sm focus:outline-none focus:border-[var(--accent-pink)]"
+                className="w-full bg-[var(--bg-primary)] text-white border border-[var(--border-color)] p-3 text-xs focus:outline-none focus:border-[var(--accent-gold)]"
               >
                 {BIRTH_OPTIONS.map(o => (
                   <option key={o.id} value={o.id}>{o.label} (Q{o.cost.toLocaleString()})</option>
                 ))}
               </select>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1.5">{selectedBirth.desc}</p>
+              <p className="text-[10px] text-[var(--text-muted)] mt-1.5 font-light">{selectedBirth.desc}</p>
             </div>
 
             {/* Education Select */}
             <div>
-              <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2">Educación Escolar Privada/Pública</label>
+              <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2 font-serif">Educación Escolar Privada/Pública</label>
               <select 
                 value={educationTier}
                 onChange={(e) => setEducationTier(e.target.value)}
-                className="w-full bg-[var(--bg-secondary)] text-white border border-white/5 rounded-xl p-3 text-sm focus:outline-none focus:border-[var(--accent-pink)]"
+                className="w-full bg-[var(--bg-primary)] text-white border border-[var(--border-color)] p-3 text-xs focus:outline-none focus:border-[var(--accent-gold)]"
               >
                 {EDUCATION_TIERS.map(o => (
                   <option key={o.id} value={o.id}>{o.label} (Q{o.monthly.toLocaleString()} / mes)</option>
                 ))}
               </select>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1.5">{selectedEducation.desc}</p>
+              <p className="text-[10px] text-[var(--text-muted)] mt-1.5 font-light">{selectedEducation.desc}</p>
             </div>
 
             {/* Nanny Select */}
             <div>
-              <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2">Cuidado y Niñera Doméstica</label>
+              <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2 font-serif">Cuidado y Niñera Doméstica</label>
               <select 
                 value={nannyOption}
                 onChange={(e) => setNannyOption(e.target.value)}
-                className="w-full bg-[var(--bg-secondary)] text-white border border-white/5 rounded-xl p-3 text-sm focus:outline-none focus:border-[var(--accent-pink)]"
+                className="w-full bg-[var(--bg-primary)] text-white border border-[var(--border-color)] p-3 text-xs focus:outline-none focus:border-[var(--accent-gold)]"
               >
                 {NANNY_OPTIONS.map(o => (
                   <option key={o.id} value={o.id}>{o.label} {o.monthly > 0 ? `(Q${o.monthly.toLocaleString()} / mes)` : ''}</option>
                 ))}
               </select>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1.5">{selectedNanny.desc}</p>
+              <p className="text-[10px] text-[var(--text-muted)] mt-1.5 font-light">{selectedNanny.desc}</p>
             </div>
 
             {/* Housing Select */}
             <div>
-              <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2">Vivienda (Habitación adicional para el bebé)</label>
+              <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2 font-serif">Vivienda (Habitación adicional para el bebé)</label>
               <select 
                 value={housingTier}
                 onChange={(e) => setHousingTier(e.target.value)}
-                className="w-full bg-[var(--bg-secondary)] text-white border border-white/5 rounded-xl p-3 text-sm focus:outline-none focus:border-[var(--accent-pink)]"
+                className="w-full bg-[var(--bg-primary)] text-white border border-[var(--border-color)] p-3 text-xs focus:outline-none focus:border-[var(--accent-gold)]"
               >
                 {HOUSING_TIERS.map(o => (
                   <option key={o.id} value={o.id}>{o.label} {o.monthly > 0 ? `(Q${o.monthly.toLocaleString()} / mes)` : ''}</option>
                 ))}
               </select>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1.5">{selectedHousing.desc}</p>
+              <p className="text-[10px] text-[var(--text-muted)] mt-1.5 font-light">{selectedHousing.desc}</p>
             </div>
 
             {/* Healthcare Select */}
             <div>
-              <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2">Seguro Médico y Pediatría</label>
+              <label className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider block mb-2 font-serif">Seguro Médico y Pediatría</label>
               <select 
                 value={healthTier}
                 onChange={(e) => setHealthTier(e.target.value)}
-                className="w-full bg-[var(--bg-secondary)] text-white border border-white/5 rounded-xl p-3 text-sm focus:outline-none focus:border-[var(--accent-pink)]"
+                className="w-full bg-[var(--bg-primary)] text-white border border-[var(--border-color)] p-3 text-xs focus:outline-none focus:border-[var(--accent-gold)]"
               >
                 {HEALTH_TIERS.map(o => (
                   <option key={o.id} value={o.id}>{o.label} {o.monthly > 0 ? `(Q${o.monthly.toLocaleString()} / mes)` : ''}</option>
                 ))}
               </select>
-              <p className="text-[10px] text-[var(--text-muted)] mt-1.5">{selectedHealth.desc}</p>
+              <p className="text-[10px] text-[var(--text-muted)] mt-1.5 font-light">{selectedHealth.desc}</p>
             </div>
           </div>
 
           {/* Section: Traffic and Commute */}
           <div className="glass-card p-6 flex flex-col gap-5">
-            <h3 className="text-lg font-bold border-b border-white/5 pb-2.5 text-white flex items-center gap-2">
-              <Car size={18} className="text-[var(--accent-cyan)]" />
+            <h3 className="text-lg font-bold border-b border-[var(--border-color)] pb-2.5 text-white font-serif uppercase tracking-wider">
               3. Factor Tráfico Vehicular (Área Metropolitana)
             </h3>
             
             <div>
-              <div className="flex justify-between items-center text-sm">
+              <div className="flex justify-between items-center text-xs mb-1">
                 <span className="font-semibold text-[var(--text-primary)]">Tiempo Diario en Tránsito para el Colegio</span>
-                <span className="text-[var(--accent-cyan)] font-bold font-display">{trafficHours} horas / día</span>
+                <span className="text-[var(--accent-slate)] font-bold font-mono">{trafficHours} horas / día</span>
               </div>
               <input 
                 type="range"
@@ -362,18 +358,19 @@ export const Calculator: React.FC = () => {
                 value={trafficHours}
                 onChange={(e) => setTrafficHours(Number(e.target.value))}
               />
-              <p className="text-[10px] text-[var(--text-muted)]">
+              <p className="text-[10px] text-[var(--text-muted)] font-light">
                 Horas promedio diarias metiendo/sacando al niño en embotellamientos (Roosevelt, C. a El Salvador, Zonas 15/16).
               </p>
             </div>
 
             {trafficHours > 0 && (
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex gap-3 text-xs text-[var(--text-secondary)]">
-                <Clock size={16} className="text-[var(--accent-cyan)] shrink-0 mt-0.5" />
+              <div className="p-4 bg-[var(--bg-primary)] border border-[var(--border-color)] text-xs text-[var(--text-secondary)]">
                 <div>
-                  <span className="font-bold text-white block mb-0.5">Tiempo e Impacto del Tráfico (18 Años):</span>
-                  Perderás aproximadamente <strong className="text-[var(--accent-cyan)]">{trafficMetrics.hours.toLocaleString()} horas</strong> de tu vida metido en el tráfico. Esto equivale a <strong className="text-[var(--accent-cyan)]">{trafficMetrics.days} días enteros</strong> (las 24 horas del día) sentado en el carro. 
-                  Adicionalmente gastarás alrededor de <strong className="text-[var(--accent-cyan)]">Q{monthlyGasCost.toLocaleString()} mensuales</strong> adicionales en gasolina por ralentí y distancias cortas.
+                  <span className="font-bold text-[var(--accent-gold)] font-serif block mb-1">Tiempo e Impacto del Tráfico (18 Años):</span>
+                  <p className="font-light leading-relaxed">
+                    Perderás aproximadamente <strong className="text-white font-mono">{trafficMetrics.hours.toLocaleString()} horas</strong> de tu vida metido en el tráfico. Esto equivale a <strong className="text-white font-mono">{trafficMetrics.days} días enteros</strong> (las 24 horas del día) sentado en el carro. 
+                    Adicionalmente gastarás alrededor de <strong className="text-white font-mono">Q{monthlyGasCost.toLocaleString()} mensuales</strong> adicionales en gasolina por ralentí y distancias cortas.
+                  </p>
                 </div>
               </div>
             )}
@@ -384,32 +381,31 @@ export const Calculator: React.FC = () => {
         <div className="flex flex-col gap-6 w-full sticky top-24">
           
           {/* Main Financial stats */}
-          <div className="glass-card p-6 bg-gradient-to-br from-[var(--card-bg)] to-[rgba(139,92,246,0.03)] border-[rgba(139,92,246,0.15)]">
-            <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-white">
-              <PiggyBank size={20} className="text-[var(--accent-violet)]" />
+          <div className="glass-card p-6">
+            <h3 className="text-lg font-bold mb-4 text-white font-serif uppercase tracking-wider">
               Resumen Financiero Proyectado
             </h3>
 
             <div className="flex flex-col gap-4">
               {/* Monthly Stats */}
-              <div className="flex justify-between items-center p-3.5 rounded-xl bg-white/5 border border-white/5">
+              <div className="flex justify-between items-center p-4 bg-[var(--bg-primary)] border border-[var(--border-color)]">
                 <div>
-                  <span className="text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Gasto Mensual Estimado</span>
-                  <span className="text-xl font-bold font-display text-[var(--text-primary)]">Q{totalMonthlyCost.toLocaleString()}</span>
-                  <span className="text-[9px] text-[var(--text-muted)] block">Incluye gasolina por tráfico</span>
+                  <span className="text-[9px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Gasto Mensual Estimado</span>
+                  <span className="text-xl font-bold font-mono text-[var(--text-primary)]">Q{totalMonthlyCost.toLocaleString()}</span>
+                  <span className="text-[9px] text-[var(--text-muted)] block mt-0.5 font-light">Incluye gasolina por tráfico</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Costo Nacimiento</span>
-                  <span className="text-xl font-bold font-display text-[var(--accent-pink)]">Q{selectedBirth.cost.toLocaleString()}</span>
-                  <span className="text-[9px] text-[var(--text-muted)] block">{selectedBirth.label}</span>
+                  <span className="text-[9px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Costo Nacimiento</span>
+                  <span className="text-xl font-bold font-mono text-[var(--accent-rust)]">Q{selectedBirth.cost.toLocaleString()}</span>
+                  <span className="text-[9px] text-[var(--text-muted)] block mt-0.5 font-light">{selectedBirth.label}</span>
                 </div>
               </div>
 
               {/* Total 18 years */}
-              <div className="p-4 rounded-xl bg-white/5 border border-[rgba(236,72,153,0.2)]">
-                <span className="text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Costo Total de Crianza (18 Años)</span>
-                <span className="text-3xl font-bold font-display text-[var(--accent-pink)]">Q{total18YearsCost.toLocaleString()}</span>
-                <span className="text-[10px] text-[var(--text-secondary)] block mt-1 font-light">
+              <div className="p-4 bg-[var(--bg-primary)] border border-[var(--border-color)]">
+                <span className="text-[9px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Costo Total de Crianza (18 Años)</span>
+                <span className="text-3xl font-bold font-mono text-[var(--accent-rust)]">Q{total18YearsCost.toLocaleString()}</span>
+                <span className="text-[9px] text-[var(--text-secondary)] block mt-1 font-light leading-relaxed">
                   Suma de parto, mensualidades escolares, comida, vivienda adicional, gasolina y ocio.
                 </span>
               </div>
@@ -417,33 +413,32 @@ export const Calculator: React.FC = () => {
           </div>
 
           {/* Emergency Diagnosis Block */}
-          <div className={`glass-card p-6 border ${diagnostics.diagnosticColor}`}>
-            <h3 className="text-base font-bold mb-3 flex items-center gap-2 text-white">
-              <ShieldAlert size={18} />
+          <div className={`p-6 border ${diagnostics.diagnosticColor}`}>
+            <h3 className="text-base font-bold mb-3 text-white font-serif uppercase tracking-wider">
               Diagnóstico Financiero y Prevención de Deudas
             </h3>
 
             <div className="flex flex-col gap-4 text-xs">
-              <p className="leading-relaxed font-light">
+              <p className="leading-relaxed font-light text-[var(--text-secondary)]">
                 {diagnostics.diagnosticMsg}
               </p>
 
               <div className="grid-container grid-cols-2 gap-4 mt-2">
-                <div className="p-3 rounded-lg bg-white/5 border border-white/5 text-center">
-                  <span className="text-[9px] text-[var(--text-muted)] uppercase tracking-wider block">Fondo de Emergencia Recomendado</span>
-                  <span className="text-base font-bold text-white font-display">Q{diagnostics.recommendedEmergencyFund.toLocaleString()}</span>
-                  <span className="text-[8px] text-[var(--text-muted)] block mt-0.5">Para accidentes o enfermedades</span>
+                <div className="p-3 bg-[var(--bg-primary)] border border-[var(--border-color)] text-center">
+                  <span className="text-[8px] text-[var(--text-muted)] uppercase tracking-wider block">Fondo de Emergencia Recomendado</span>
+                  <span className="text-base font-bold text-white font-mono">Q{diagnostics.recommendedEmergencyFund.toLocaleString()}</span>
+                  <span className="text-[8px] text-[var(--text-muted)] block mt-0.5 font-light">Para accidentes o enfermedades</span>
                 </div>
-                <div className="p-3 rounded-lg bg-white/5 border border-white/5 text-center">
-                  <span className="text-[9px] text-[var(--text-muted)] uppercase tracking-wider block">Remanente Neto Mensual</span>
-                  <span className="text-base font-bold text-white font-display">Q{diagnostics.netIncome.toLocaleString()}</span>
-                  <span className="text-[8px] text-[var(--text-muted)] block mt-0.5">Dinero libre para los padres / mes</span>
+                <div className="p-3 bg-[var(--bg-primary)] border border-[var(--border-color)] text-center">
+                  <span className="text-[8px] text-[var(--text-muted)] uppercase tracking-wider block">Remanente Neto Mensual</span>
+                  <span className="text-base font-bold text-white font-mono">Q{diagnostics.netIncome.toLocaleString()}</span>
+                  <span className="text-[8px] text-[var(--text-muted)] block mt-0.5 font-light">Dinero libre para los padres / mes</span>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-white/5 flex justify-between items-center text-[10px]">
-                <span>Porcentaje del ingreso absorbido por el hijo:</span>
-                <span className="font-bold text-lg">{diagnostics.percentageOfIncome}%</span>
+              <div className="pt-3 border-t border-[var(--border-color)] flex justify-between items-center text-[10px]">
+                <span className="uppercase tracking-wider text-[var(--text-muted)]">Ingreso absorbido por el hijo:</span>
+                <span className="font-bold text-base font-mono text-[var(--accent-rust)]">{diagnostics.percentageOfIncome}%</span>
               </div>
             </div>
           </div>
@@ -453,75 +448,74 @@ export const Calculator: React.FC = () => {
             {/* SVG Donut */}
             <div className="relative w-36 h-36 shrink-0">
               <svg viewBox="0 0 360 360" className="w-full h-full -rotate-90">
-                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-pink)" strokeWidth="32" strokeDasharray={`${pieData.foodStroke} 1000`} strokeDashoffset={0} />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-violet)" strokeWidth="32" strokeDasharray={`${pieData.eduStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke}`} />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-cyan)" strokeWidth="32" strokeDasharray={`${pieData.housingStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke}`} />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-emerald)" strokeWidth="32" strokeDasharray={`${pieData.nannyStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke + pieData.housingStroke}`} />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="#a78bfa" strokeWidth="32" strokeDasharray={`${pieData.healthStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke + pieData.housingStroke + pieData.nannyStroke}`} />
-                <circle cx="180" cy="180" r="140" fill="none" stroke="#f472b6" strokeWidth="32" strokeDasharray={`${pieData.leisureStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke + pieData.housingStroke + pieData.nannyStroke + pieData.healthStroke}`} />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-rust)" strokeWidth="32" strokeDasharray={`${pieData.foodStroke} 1000`} strokeDashoffset={0} />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-gold)" strokeWidth="32" strokeDasharray={`${pieData.eduStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke}`} />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-slate)" strokeWidth="32" strokeDasharray={`${pieData.housingStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke}`} />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="var(--accent-sage)" strokeWidth="32" strokeDasharray={`${pieData.nannyStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke + pieData.housingStroke}`} />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="#a69f95" strokeWidth="32" strokeDasharray={`${pieData.healthStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke + pieData.housingStroke + pieData.nannyStroke}`} />
+                <circle cx="180" cy="180" r="140" fill="none" stroke="#483f35" strokeWidth="32" strokeDasharray={`${pieData.leisureStroke} 1000`} strokeDashoffset={`-${pieData.foodStroke + pieData.eduStroke + pieData.housingStroke + pieData.nannyStroke + pieData.healthStroke}`} />
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                <span className="text-[8px] text-[var(--text-muted)] font-bold uppercase tracking-wide">Crianza</span>
-                <span className="text-base font-bold font-display">Q{monthlyRaisingCost.toLocaleString()}</span>
-                <span className="text-[8px] text-[var(--text-muted)]">Q/mes</span>
+                <span className="text-[8px] text-[var(--text-muted)] font-bold uppercase tracking-widest block">Mensual</span>
+                <span className="text-base font-bold font-mono">Q{monthlyRaisingCost.toLocaleString()}</span>
+                <span className="text-[8px] text-[var(--text-muted)] block">Q/mes</span>
               </div>
             </div>
 
             {/* Legends */}
             <div className="flex-1 w-full flex flex-col gap-1.5 text-[10px]">
-              <span className="font-bold text-white block mb-1">Presupuesto mensual:</span>
-              <div className="flex justify-between border-b border-white/5 pb-0.5">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-[var(--accent-pink)]"></span> Alimentación ({pieData.foodPct}%)</span>
-                <strong>Q{foodCost.toLocaleString()}</strong>
+              <span className="font-bold text-white block mb-1 font-serif uppercase tracking-wider">Presupuesto mensual:</span>
+              <div className="flex justify-between border-b border-[var(--border-color)] pb-0.5 font-light">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 bg-[var(--accent-rust)]"></span> Alimentación ({pieData.foodPct}%)</span>
+                <strong className="font-mono text-white">Q{foodCost.toLocaleString()}</strong>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-0.5">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-[var(--accent-violet)]"></span> Educación ({pieData.eduPct}%)</span>
-                <strong>Q{selectedEducation.monthly.toLocaleString()}</strong>
+              <div className="flex justify-between border-b border-[var(--border-color)] pb-0.5 font-light">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 bg-[var(--accent-gold)]"></span> Educación ({pieData.eduPct}%)</span>
+                <strong className="font-mono text-white">Q{selectedEducation.monthly.toLocaleString()}</strong>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-0.5">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-[var(--accent-cyan)]"></span> Vivienda ({pieData.housingPct}%)</span>
-                <strong>Q{selectedHousing.monthly.toLocaleString()}</strong>
+              <div className="flex justify-between border-b border-[var(--border-color)] pb-0.5 font-light">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 bg-[var(--accent-slate)]"></span> Vivienda ({pieData.housingPct}%)</span>
+                <strong className="font-mono text-white">Q{selectedHousing.monthly.toLocaleString()}</strong>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-0.5">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-[var(--accent-emerald)]"></span> Niñera ({pieData.nannyPct}%)</span>
-                <strong>Q{selectedNanny.monthly.toLocaleString()}</strong>
+              <div className="flex justify-between border-b border-[var(--border-color)] pb-0.5 font-light">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 bg-[var(--accent-sage)]"></span> Niñera ({pieData.nannyPct}%)</span>
+                <strong className="font-mono text-white">Q{selectedNanny.monthly.toLocaleString()}</strong>
               </div>
-              <div className="flex justify-between border-b border-white/5 pb-0.5">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-[#a78bfa]"></span> Salud ({pieData.healthPct}%)</span>
-                <strong>Q{selectedHealth.monthly.toLocaleString()}</strong>
+              <div className="flex justify-between border-b border-[var(--border-color)] pb-0.5 font-light">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 bg-[#a69f95]"></span> Salud ({pieData.healthPct}%)</span>
+                <strong className="font-mono text-white">Q{selectedHealth.monthly.toLocaleString()}</strong>
               </div>
-              <div className="flex justify-between">
-                <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded bg-[#f472b6]"></span> Ocio ({pieData.leisurePct}%)</span>
-                <strong>Q{leisureCost.toLocaleString()}</strong>
+              <div className="flex justify-between font-light">
+                <span className="flex items-center gap-1.5"><span className="w-2 h-2 bg-[#483f35]"></span> Ocio ({pieData.leisurePct}%)</span>
+                <strong className="font-mono text-white">Q{leisureCost.toLocaleString()}</strong>
               </div>
             </div>
           </div>
 
           {/* Compound Interest Opportunity block */}
-          <div className="glass-card p-6 bg-gradient-to-br from-[var(--card-bg)] to-[rgba(16,185,129,0.03)] border-[rgba(16,185,129,0.15)] flex flex-col gap-4">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
-              <TrendingUp size={18} className="text-[var(--accent-emerald)]" />
+          <div className="glass-card p-6 flex flex-col gap-4">
+            <h3 className="text-base font-bold text-white flex items-center gap-2 font-serif uppercase tracking-wider">
               Costo de Oportunidad e Inversión
             </h3>
 
             <div className="flex flex-col gap-3">
-              <div className="flex justify-between items-center p-3.5 rounded-xl bg-white/5 border border-[rgba(16,185,129,0.2)]">
+              <div className="flex justify-between items-center p-3.5 bg-[var(--bg-primary)] border border-[var(--border-color)]">
                 <div>
-                  <span className="text-[9px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Valor Compuesto Compra ETF (S&P 500)</span>
-                  <span className="text-2xl font-bold font-display text-[var(--accent-emerald)]">Q{potentialWealth.toLocaleString()}</span>
-                  <span className="text-[9px] text-[var(--text-muted)] block">Simulación a 18 años con retorno de {investmentReturn}%</span>
+                  <span className="text-[9px] text-[var(--text-muted)] font-bold uppercase tracking-wider block">Simulación ETF (S&P 500)</span>
+                  <span className="text-2xl font-bold font-mono text-[var(--accent-sage)]">Q{potentialWealth.toLocaleString()}</span>
+                  <span className="text-[9px] text-[var(--text-muted)] block mt-0.5 font-light">Simulación a 18 años con retorno de {investmentReturn}%</span>
                 </div>
                 <div className="text-right">
-                  <span className="text-[8px] text-[var(--text-muted)] font-bold block">Intereses compuestos</span>
-                  <span className="text-xs font-semibold text-[var(--accent-cyan)]">Q{wealthDifference.toLocaleString()}</span>
+                  <span className="text-[8px] text-[var(--text-muted)] block font-light">Intereses compuestos</span>
+                  <span className="text-xs font-semibold font-mono text-[var(--accent-gold)]">Q{wealthDifference.toLocaleString()}</span>
                 </div>
               </div>
 
               {/* Slider for returns */}
               <div>
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-[var(--text-secondary)]">Rendimiento Anual Histórico del Mercado</span>
-                  <span className="font-bold text-[var(--accent-emerald)]">{investmentReturn}% anual</span>
+                <div className="flex justify-between items-center text-xs mb-1">
+                  <span className="text-[var(--text-secondary)] font-light">Rendimiento Anual Histórico del Mercado</span>
+                  <span className="font-bold font-mono text-[var(--accent-sage)]">{investmentReturn}% anual</span>
                 </div>
                 <input 
                   type="range"
@@ -536,10 +530,10 @@ export const Calculator: React.FC = () => {
           </div>
 
           {/* Info disclaimer */}
-          <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex gap-3 text-xs text-[var(--text-secondary)]">
-            <Info size={16} className="text-[var(--accent-cyan)] shrink-0 mt-0.5" />
+          <div className="p-4 bg-[var(--bg-primary)] border border-[var(--border-color)] text-xs text-[var(--text-secondary)]">
             <p className="leading-relaxed font-light">
-              <strong>Nota de Emergencia Médica en Guatemala:</strong> Una estadía en cuidados intensivos neonatales (UCIN) en hospitales como El Pilar o Herrera Llerandi cuesta entre Q10,000 y Q25,000 diarios. Sin un seguro privado con coberturas altas, una complicación de parto común puede generar deudas de por vida en Guatemala.
+              <strong className="text-[var(--accent-gold)] font-serif block mb-1">Nota de Emergencia Médica en Guatemala:</strong> 
+              Una estadía en cuidados intensivos neonatales (UCIN) en hospitales como El Pilar o Herrera Llerandi cuesta entre Q10,000 y Q25,000 diarios. Sin un seguro privado con coberturas altas, una complicación de parto común puede generar deudas de por vida en Guatemala.
             </p>
           </div>
 
