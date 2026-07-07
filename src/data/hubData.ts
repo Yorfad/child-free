@@ -127,6 +127,22 @@ export const studiesData: Study[] = [
       'El arrepentimiento no se debe necesariamente a la falta de ayuda del padre o a dificultades económicas, sino a la pérdida total de soberanía personal y la insatisfacción intrínseca con la maternidad.',
       'La sociedad suele patologizar este arrepentimiento etiquetándolo como depresión posparto o inestabilidad mental, silenciando una realidad sociológica estructurada.'
     ]
+  },
+  {
+    id: 'study-6',
+    title: 'El costo de la crianza de clase media en la Ciudad de Guatemala: Educación y salud privada como mandatos sociales',
+    authors: 'ASIES (Asociación de Investigación y Estudios Sociales) / Datos INE',
+    year: 2022,
+    source: 'Boletín Socioeconómico de Guatemala (ENIGH)',
+    category: 'Economía',
+    summary: 'Análisis del costo de oportunidad y el gasto real de crianza que enfrentan las familias metropolitanas de clase media en Guatemala para criar a un hijo hasta la mayoría de edad, condicionado por la dependencia de servicios privados.',
+    methodology: 'Cálculo a partir de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENIGH) del INE, cruzado con matrículas de colegios privados y aranceles hospitalarios del área metropolitana.',
+    keyFindings: [
+      'Un hogar promedio de clase media en la Ciudad de Guatemala gasta entre Q750,000 y Q1.8 millones de Quetzales por hijo hasta los 18 años.',
+      'La educación privada representa entre el 35% y el 45% del presupuesto de crianza mensual, debido a la baja cobertura e infraestructura pública de calidad.',
+      'La salud y seguros privados (pediatras, emergencias y pólizas médicas) demandan un desembolso promedio de Q800 a Q1,800 mensuales por niño.',
+      'El costo de un hijo representa entre el 30% y el 45% de los ingresos de una pareja profesional de clase media en Guatemala, limitando su capacidad de ahorro para su jubilación.'
+    ]
   }
 ];
 

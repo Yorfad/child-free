@@ -329,10 +329,23 @@ export const Calculator: React.FC = () => {
             </div>
           </div>
 
+          {/* Guatemala Context Block */}
+          {currency === 'GTQ' && (
+            <div className="p-4 rounded-xl bg-[rgba(139,92,246,0.05)] border border-[rgba(139,92,246,0.2)] flex gap-3 text-xs text-[var(--text-secondary)] mb-4">
+              <Scale size={16} className="text-[var(--accent-violet)] shrink-0 mt-0.5" />
+              <div>
+                <strong className="text-[var(--text-primary)] block mb-1">Contexto de Clase Media en Guatemala (ASIES / INE):</strong>
+                <p className="leading-relaxed font-light">
+                  En el área metropolitana de Guatemala, las familias de clase media recurren de manera casi obligada a la educación y salud privadas. Un colegio de nivel medio cobra entre Q1,500 y Q4,000 mensuales, mientras que los colegios bilingües internacionales superan los Q7,000 mensuales. La salud privada (seguros y consultas) añade entre Q800 y Q1,800 mensuales. Por esta razón, el costo real acumulado de crianza en Guatemala varía frecuentemente entre <strong>Q750,000</strong> y <strong>Q1.8 millones</strong> por hijo.
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Info Banner */}
           <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex gap-3 text-xs text-[var(--text-secondary)]">
             <Info size={16} className="text-[var(--accent-cyan)] shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
+            <p className="leading-relaxed font-light">
               <strong>Nota:</strong> Estos valores son estimados referenciales de costo de crianza promedio. En la realidad, factores como herencia, universidad privada ({symbol}{(100000 * rate).toLocaleString()}-{symbol}{(200000 * rate).toLocaleString()}+ adicionales), inflación acumulada y seguros universitarios pueden elevar significativamente esta cifra.
             </p>
           </div>
